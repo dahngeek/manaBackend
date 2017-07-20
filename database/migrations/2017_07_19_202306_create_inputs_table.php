@@ -20,10 +20,10 @@ class CreateInputsTable extends Migration
             $table->foreign('page_id')->references('id')->on('paginas');
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('input_types');
-            $table->string('titulo');
+            $table->string('titulo')->nullable();
             $table->string('contenido');
-            $table->json('options');
-            $table->integer('orden');
+            $table->json('options')->nullable();
+            $table->integer('orden')->nullable();
         });
     }
 

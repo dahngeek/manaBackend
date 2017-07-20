@@ -16,8 +16,8 @@ class CreatePaginasTable extends Migration
         Schema::create('paginas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->text('description');
-            $table->integer('orden');
+            $table->text('description')->nullable();
+            $table->integer('orden')->nullable();
             $table->timestamps();
             $table->integer('cuestionario_id')->unsigned();
             $table->foreign('cuestionario_id')->references('id')->on('cuestionarios');

@@ -17,7 +17,7 @@ class CreateCuestionariosTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('nombre');
-            $table->string('slug');
+            $table->string('slug')->nullable();
         });
     }
 
