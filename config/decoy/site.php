@@ -25,6 +25,7 @@ return [
         // 'Content,book' => [
         // 	'Articles' => '/admin/articles'
         // ],
+        'Cuestionarios,align-left' => '/admin/cuestionarios',
         'Elements,leaf' => '/admin/elements',
         'Redirects,new-window' => '/admin/redirect-rules',
     ],
