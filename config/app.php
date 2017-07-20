@@ -176,7 +176,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
+        /*
+         * Decoy para el lado de la administración...
+         */
+        Bkwld\Decoy\ServiceProvider::class,
     ],
 
     /*
@@ -225,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        //Decoy for admin aliases
+        'Decoy' => Bkwld\Decoy\Facades\Decoy::class,
+        'DecoyURL' => Bkwld\Decoy\Facades\DecoyURL::class,
 
     ],
 
