@@ -16,7 +16,7 @@ class CreateTiposInputTable extends Migration
         Schema::create('input_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('descripcion')->nullable();
+            $table->longText('descripcion')->nullable();
             $table->string('opciones')->nullable();
             $table->string('return_type');
             $table->timestamps();

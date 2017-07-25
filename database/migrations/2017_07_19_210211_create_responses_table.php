@@ -17,7 +17,7 @@ class CreateResponsesTable extends Migration
             $table->increments('id');
             $table->integer('input_id')->unsigned();
             $table->foreign('input_id')->references('id')->on('inputs');
-            $table->string('response_value');
+            $table->longText('response_value');
             $table->integer('session_id');
             $table->timestamps();
         });

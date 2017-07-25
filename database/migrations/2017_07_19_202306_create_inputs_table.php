@@ -21,9 +21,9 @@ class CreateInputsTable extends Migration
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('input_types');
             $table->string('titulo')->nullable();
-            $table->string('contenido');
+            $table->longText('contenido');
             $table->json('options')->nullable();
-            $table->integer('orden')->nullable();
+            $table->integer('position')->nullable();
         });
     }
 
