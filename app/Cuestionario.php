@@ -38,7 +38,7 @@ class Cuestionario extends Base
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function blocks()
+    public function paginas()
     {
         return $this->hasMany('Pagina');
     }
@@ -74,6 +74,15 @@ class Cuestionario extends Base
     public function getUriAttribute()
     {
         return route('cuestionario', $this->slug);
+    }
+
+    /**
+     * Reemplazar la funcion que obtiene el titulo
+     *
+     * @return String
+     */
+    public function getAdminTitleAttribute(){
+        return $this->nombre;
     }
 
     /**
