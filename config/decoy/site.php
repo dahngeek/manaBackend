@@ -7,7 +7,7 @@ return [
      *
      * @var string
      */
-    'name' => config('site.name') ? config('site.name') : 'Admin',
+    'name' => config('site.name') ? config('site.name') : 'InvestigacionUAP',
 
     /**
      * This generates the nav sidebar.  It is key-value pairs.  The key is always the
@@ -26,6 +26,9 @@ return [
         // 	'Articles' => '/admin/articles'
         // ],
         'Cuestionarios,align-left' => '/admin/cuestionarios',
+        'Paginas,align-left' => '/admin/paginas',
+        'Preguntas,align-left' => '/admin/inputs',
+        'Tipos de Entrada,align-left' => '/admin/inputtypes',
         'Elements,leaf' => '/admin/elements',
         'Redirects,new-window' => '/admin/redirect-rules',
     ],
