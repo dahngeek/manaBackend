@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Bkwld\Decoy\Controllers\Base;
 
-class Inputs extends Base
+class FoodQuestions extends Base
 {
     /*
      * Example settings
@@ -16,18 +16,17 @@ class Inputs extends Base
     protected $description = 'Administrar las preguntas de los cuestionarios';
 
     protected $columns = [
-        'Titulo' => 'titulo',
-        'Contenido' => 'contenido',
+        'Alimento' => 'name',
+        'Contenido' => 'content',
         'Pagina' => 'nombre_pagina'
         // 'Fecha' => 'created_at',
     ];
     protected $search = [
         'titulo',
-        'page_id' => [
+        'pagina_id' => [
             'type' => 'select',
             'label' => 'Pagina',
-            'options' => 'App\Input::paginas_list()'
+            'options' => 'App\FoodQuestion::paginas_list()'
         ],
     ];
-
 }

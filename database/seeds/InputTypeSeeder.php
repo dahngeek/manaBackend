@@ -17,29 +17,34 @@ class InputTypeSeeder extends Seeder
         //     $table->string('opciones');
         //     $table->string('return_type');
         DB::table('input_types')->insert([
-            'nombre' => 'vertical_radio_string',
+            'nombre' => 'Radio Vertical (texto/valor)',
             'descripcion' => 'Retorna string. Seleccion multiple vertical',
             'return_type' => 'string'
         ]);
         DB::table('input_types')->insert([
-            'nombre' => 'vertical_radio_int',
+            'nombre' => 'Radios Vertical (Numerica)',
             'descripcion' => 'Retorna int. Seleccion multiple vertical',
             'return_type' => 'int'
         ]);
         DB::table('input_types')->insert([
-            'nombre' => 'horizontal_radio_int',
+            'nombre' => 'Radio Horizontal (Numerica)',
             'descripcion' => 'Retorna int. Seleccion multiple horizontal',
             'return_type' => 'int'
         ]);
         DB::table('input_types')->insert([
-            'nombre' => 'text_field',
+            'nombre' => 'Campo de Texto',
             'descripcion' => 'Retorna String. Caja de entrada de texto',
             'return_type' => 'string'
         ]);
         DB::table('input_types')->insert([
-            'nombre' => 'text_block',
+            'nombre' => 'Bloque de Texto',
             'descripcion' => 'No retorna nada. Contenido en HTML de texto',
             'return_type' => 'none'
+        ]);
+        DB::table('input_types')->insert([
+            'nombre' => 'Switch On/Off',
+            'descripcion' => 'Retorna booleano',
+            'return_type' => 'bool'
         ]);
     }
 }

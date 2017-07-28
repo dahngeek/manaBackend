@@ -5,40 +5,19 @@ namespace App;
 use Bkwld\Decoy\Models\Base;
 use Bkwld\Decoy\Models\Traits\HasImages;
 
-class Input extends Base
+class FoodQuestion extends Base
 {
-    // use HasImages;
+    use HasImages;
 
     /**
      * Validation rules
-
-     * $table->increments('id');
-     * $table->timestamps();
-     * $table->integer('page_id')->unsigned();
-     * $table->foreign('page_id')->references('id')->on('paginas');
-     * $table->integer('type_id')->unsigned();
-     * $table->foreign('type_id')->references('id')->on('input_types');
-     * $table->string('titulo')->nullable();
-     * $table->string('contenido');
-     * $table->json('options')->nullable();
-     * $table->integer('position')->nullable();
-
      *
      * @var array
      */
     public static $rules = [
-        'page_id' => 'exists:paginas,id',
-    	'type_id' => 'exists:input_types,id',
-        'titulo' => 'max:100',
-    	'contenido' => 'required',
+    	'name' => 'required',
+    	'images.default' => 'image|required',
     ];
-
-    /**
-     * Uploadable attributes
-     *
-     * @var array
-     */
-    // protected $upload_attributes = ['pdf'];
 
     /**
      * Relationships to copy during duplication
@@ -48,13 +27,21 @@ class Input extends Base
     // protected $cloneable_relations = ['photos'];
 
     /**
+     * The roles that belong to the user.
+     */
+    public function portions()
+    {
+        return $this->belongsToMany('App\Portion', 'portion_question', 'food_question_id', 'portion_id');
+    }
+
+    /**
      * Relacion con la pagina
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
     public function pagina()
     {
-        return $this->belongsTo('App\Pagina','page_id');
+        return $this->belongsTo('App\Pagina','pagina_id');
     }
 
     /**
@@ -68,13 +55,23 @@ class Input extends Base
     }
 
     /**
-     * Tipo de input
+     * Template de Frecuencia
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function input_type()
+    public function frequency_template()
     {
-        return $this->hasOne('InputType');
+        return $this->hasOne('FrequencyTemplate');
+    }
+
+    /**
+     * Template de Porciones
+     *
+     * @return Illuminate\Database\Eloquent\Relations\Relation
+     */
+    public function portion_template()
+    {
+        return $this->hasOne('PortionTemplate');
     }
 
     /**
@@ -83,7 +80,7 @@ class Input extends Base
      * @return String
      */
     public function getAdminTitleAttribute(){
-        return $this->nombre;
+        return $this->name;
     }
 
     /**
@@ -106,17 +103,36 @@ class Input extends Base
     }
 
     /**
-     * List all tipos de entrada
+     * List all frequency tamplates
      *
      * @return Array
      */
-    public static function type_list()
+    public static function frequency_template_list()
     {
-        $tipos = InputType::all();
+        $tipos = FrequencyTemplate::all();
         $arr = array();
 
         foreach ($tipos as $cue) {
-            $arr[$cue->id] = $cue->nombre;
+            $arr[$cue->id] = $cue->name;
+        }
+        // \Log::info("------------------------------------->>>>>>>>>>>>>>>");
+        // \Log::info($arr);
+        // \Log::info("<<<<<<<<<<<<<<<<<<<----------------------------------");
+        return $arr;
+    }
+    
+    /**
+     * List all frequency tamplates
+     *
+     * @return Array
+     */
+    public static function portion_template_list()
+    {
+        $tipos = PortionTemplate::all();
+        $arr = array();
+
+        foreach ($tipos as $cue) {
+            $arr[$cue->id] = $cue->name;
         }
         // \Log::info("------------------------------------->>>>>>>>>>>>>>>");
         // \Log::info($arr);
@@ -132,7 +148,7 @@ class Input extends Base
     public function onCreating()
     {
         if (isset($this->position)) return;
-        $this->position = static::where('page_id', $this->page_id )->max('position') + 1;
+        $this->position = static::where('pagina_id', $this->page_id )->max('position') + 1;
     }
 
     /**

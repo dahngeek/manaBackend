@@ -1,7 +1,10 @@
+@php
+	$sidebar->add(Former::listing('App\FoodQuestion'));
+@endphp 
 
 {!! View::make('decoy::shared.form._header', $__data)->render() !!}
 	<fieldset class="legend {{empty($item) ? 'New' : 'Edit'}}">
-		{!! Former::select('cuestionario_id')->options(App\Pagina::cuestionarios_list()) !!}
+		{{--  {!! Former::select('cuestionario_id')->options(App\Pagina::cuestionarios_list()) !!}  --}}
 		{!! Former::text('nombre') !!}
 		{!! Former::wysiwyg('description') !!}
 	</fieldset>

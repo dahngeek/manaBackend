@@ -30,6 +30,6 @@ return [
 
     // Set up the default stylesheet and script tags
     'stylesheet' => '/assets/decoy/index.min.css',
-    'script' => '/assets/decoy/principal.min.js',
+    'script' => '/assets/decoy/index.min.js',
 
 ];

@@ -37,9 +37,10 @@ class Pagina extends Base
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function preguntas()
+    public function foodQuestions()
     {
-        return $this->hasMany('App\Input');
+        return $this->hasMany('App\FoodQuestion')
+                    ->orderBy('food_questions.position');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuestionariosTable extends Migration
+class CreatePortionTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateCuestionariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cuestionarios', function (Blueprint $table) {
+        Schema::create('portion_templates', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->longText('content')->nullable();
+            $table->string('range')->nullable();
             $table->timestamps();
-            $table->string('nombre');
-            $table->string('slug')->nullable();
-            $table->boolean('published')->default(true);
-            $table->boolean('show_title')->default(true);
         });
     }
 
@@ -30,6 +29,6 @@ class CreateCuestionariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cuestionarios');
+        Schema::dropIfExists('portion_templates');
     }
 }

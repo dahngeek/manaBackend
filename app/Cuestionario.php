@@ -40,7 +40,7 @@ class Cuestionario extends Base
      */
     public function paginas()
     {
-        return $this->hasMany('Pagina');
+        return $this->hasMany('App\Pagina')->orderBy('paginas.position');
     }
 
     /**
