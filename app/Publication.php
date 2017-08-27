@@ -3,42 +3,26 @@
 namespace App;
 
 use Bkwld\Decoy\Models\Base;
-// use Bkwld\Decoy\Models\Traits\HasImages;
+use Bkwld\Decoy\Models\Traits\HasImages;
 
-class User extends Base
+class Publication extends Base
 {
-    // use HasImages;
-    public $table = 'mana_user';
+    use HasImages;
+    public $table='mana_publication';
 
     /**
      * Validation rules
      *
      * @var array
      */
-    public static $rules = [
-    	'name' => 'required',
-    	'email' => 'email',
-    	'profile_pic' => 'url',
-    ];
-
-    /**
-     * List all Users
-     *
-     * @return Array
-     */
-    public static function users_list()
-    {
-        $tipos = User::all();
-        $arr = array();
-        foreach ($tipos as $cue) {
-            $arr[$cue->id] = $cue->name;
-        }
-        // \Log::info("------------------------------------->>>>>>>>>>>>>>>");
-        // \Log::info($arr);
-        // \Log::info("<<<<<<<<<<<<<<<<<<<----------------------------------");
-        return $arr;
-    }
-
+    // public static $rules = [
+    // 	'title' => 'required',
+    // 	'slug' => 'alpha_dash|unique:articles',
+    // 	'images.default' => 'image|required',
+    // 	'images.listing' => 'image',
+    // 	'date' => 'required',
+    // 	'url' => 'url',
+    // ];
 
     /**
      * Uploadable attributes
@@ -59,10 +43,15 @@ class User extends Base
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    // public function blocks()
-    // {
-    //     return $this->hasMany('Block');
-    // }
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function publicationType()
+    {
+        return $this->belongsTo('App\PublicationType');
+    }
 
     /**
      * Put new instances at the end
@@ -98,13 +87,17 @@ class User extends Base
     // }
 
     /**
-     * Return the profile Picture of the user.
+     * Get author name
      *
      * @return string HTML
      */
-    public function printProfileImage()
+    public function getAuthor()
     {
-        return $this->profile_pic ? '<img width="50" height="50" src="'.$this->profile_pic.'"/>' : '<img src="http://placehold.it/100"/>';
+        return $this->user->name;
     }
 
+    public function getPublicationType()
+    {
+        return $this->publicationType->name;
+    }
 }

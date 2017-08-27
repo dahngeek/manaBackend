@@ -3,32 +3,32 @@
 namespace App;
 
 use Bkwld\Decoy\Models\Base;
-// use Bkwld\Decoy\Models\Traits\HasImages;
+use Bkwld\Decoy\Models\Traits\HasImages;
 
-class User extends Base
+class PublicationType extends Base
 {
-    // use HasImages;
-    public $table = 'mana_user';
-
+    use HasImages;
+    public $table = 'mana_publication_type';
+    public $timestamps = false;
     /**
      * Validation rules
      *
      * @var array
      */
     public static $rules = [
-    	'name' => 'required',
-    	'email' => 'email',
-    	'profile_pic' => 'url',
+        'name' => 'required',
+        'description' => 'required',
+    	'images.default' => 'image',
     ];
-
+    
     /**
      * List all Users
      *
      * @return Array
      */
-    public static function users_list()
+    public static function publicationtype_list()
     {
-        $tipos = User::all();
+        $tipos = PublicationType::all();
         $arr = array();
         foreach ($tipos as $cue) {
             $arr[$cue->id] = $cue->name;
@@ -38,7 +38,6 @@ class User extends Base
         // \Log::info("<<<<<<<<<<<<<<<<<<<----------------------------------");
         return $arr;
     }
-
 
     /**
      * Uploadable attributes
@@ -98,13 +97,12 @@ class User extends Base
     // }
 
     /**
-     * Return the profile Picture of the user.
+     * Render markup for the "featured" column in the admin listing
      *
      * @return string HTML
      */
-    public function printProfileImage()
-    {
-        return $this->profile_pic ? '<img width="50" height="50" src="'.$this->profile_pic.'"/>' : '<img src="http://placehold.it/100"/>';
-    }
-
+    // public function getAdminFeaturedAttribute()
+    // {
+    //     return $this->featured ? '<span class="badge">Featured</span>' : '';
+    // }
 }

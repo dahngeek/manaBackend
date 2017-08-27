@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecipes extends Migration
+class CreatePublication extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateRecipes extends Migration
      */
     public function up()
     {
-        Schema::create('mana_recipe', function (Blueprint $table) {
+        Schema::create('mana_publication', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
+            $table->integer('publication_type_id')->unsigned();
+            $table->foreign('publication_type_id')->references('id')->on('mana_publication_type');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('mana_users');
-            $table->boolean('published')->default(true);
-            $table->boolean('active')->default(true);
+            $table->text('content')->nullable();
+            $table->string('secondary_title')->nullable();
+            $table->string('external_link')->nullable();
+            $table->string('link_text')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateRecipes extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mana_recipes');
+        Schema::dropIfExists('mana_publication');
     }
 }

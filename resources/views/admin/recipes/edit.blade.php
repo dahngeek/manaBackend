@@ -6,7 +6,7 @@
 {!! View::make('decoy::shared.form._header', $__data)->render() !!}
 	<fieldset>
 		<div class="legend">{{empty($item) ? 'New' : 'Edit'}}</div>
-		{!! Former::select('mana_user_id')->options(App\User::users_list())->label("Autor") !!}
+		{!! Former::select('user_id')->options(App\User::users_list())->label("Autor") !!}
 		{!! Former::text('name')->label("Nombre") !!}
     {!! Former::wysiwyg('description')->label("Descripcion") !!}
 		{!! Former::image()!!}

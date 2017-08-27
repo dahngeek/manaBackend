@@ -27,6 +27,12 @@ return [
         // ],
         'Recetas,comment' => '/admin/recipes',
         'Ingredientes,comment' => '/admin/ingredients',
+
+        'Publicaciones,book' => [
+        	'Publicaciones' => '/admin/publications',
+            'Tipos de Publicacion' => '/admin/publicationtypes',
+        ],
+        'Tipos de Publicacion,comment' => '/admin/publicationtypes',
         // 'Paginas,align-left' => '/admin/paginas',
         // 'Preguntas,ok' => '/admin/foodquestions',
         'Usuarios,book' => [
