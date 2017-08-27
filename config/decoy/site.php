@@ -25,16 +25,16 @@ return [
         // 'Content,book' => [
         // 	'Articles' => '/admin/articles'
         // ],
-        'Cuestionarios,comment' => '/admin/cuestionarios',
+        // 'Cuestionarios,comment' => '/admin/cuestionarios',
         // 'Paginas,align-left' => '/admin/paginas',
         // 'Preguntas,ok' => '/admin/foodquestions',
-        'Plantillas de Textos,book' => [
-        	'Frequencia' => '/admin/frequencytemplates',
-            'Porciones' => '/admin/portiontemplates',
+        'Usuarios,book' => [
+        	'Usuarios' => '/admin/users',
+            // 'Porciones' => '/admin/portiontemplates',
         ],
-        'Porciones,apple' => '/admin/portions',
+        // 'Porciones,apple' => '/admin/portions',
         // 'Elements,leaf' => '/admin/elements',
-        'Redirects,new-window' => '/admin/redirect-rules',
+        // 'Redirects,new-window' => '/admin/redirect-rules',
     ],
 
     /**
