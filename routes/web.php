@@ -14,7 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('cuestionario/{slug}', ['as' => 'cuestionario', function($slug) {
-  return view('cuestionario.show', ['cuestionario' => Cuestionario::findBySlugOrFail($slug) ]);
-}]);
