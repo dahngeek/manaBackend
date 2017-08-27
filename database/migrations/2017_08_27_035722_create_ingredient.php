@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateIngredient extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('mana_user', function (Blueprint $table) {
+        Schema::create('mana_ingredient', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('profile_pic')->nullable();
-            $table->boolean('verified')->default(false);
-            $table->string('api_token')->nullable();
-            $table->text('short_bio')->nullable();
+            $table->text('description');
+            $table->boolean('date_based')->default(false);
+            $table->boolean('published')->default(true);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mana_users');
+        Schema::dropIfExists('mana_ingredient');
     }
 }

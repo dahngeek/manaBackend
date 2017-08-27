@@ -3,42 +3,22 @@
 namespace App;
 
 use Bkwld\Decoy\Models\Base;
-// use Bkwld\Decoy\Models\Traits\HasImages;
+use Bkwld\Decoy\Models\Traits\HasImages;
 
-class User extends Base
+class Ingredient extends Base
 {
-    // use HasImages;
-    public $table = 'mana_user';
-
+    use HasImages;
+    public $table = "mana_ingredient";
     /**
      * Validation rules
      *
      * @var array
      */
     public static $rules = [
-    	'name' => 'required',
-    	'email' => 'email',
-    	'profile_pic' => 'url',
+        'name' => 'required',
+        'description' => 'required',
+    	'images.default' => 'image|required',
     ];
-
-    /**
-     * List all Users
-     *
-     * @return Array
-     */
-     public static function users_list()
-     {
-         $tipos = User::all();
-         $arr = array();
-         foreach ($tipos as $cue) {
-             $arr[$cue->id] = $cue->name;
-         }
-         // \Log::info("------------------------------------->>>>>>>>>>>>>>>");
-         // \Log::info($arr);
-         // \Log::info("<<<<<<<<<<<<<<<<<<<----------------------------------");
-         return $arr;
-     }
-
 
     /**
      * Uploadable attributes
@@ -55,14 +35,23 @@ class User extends Base
     // protected $cloneable_relations = ['photos'];
 
     /**
+     * Las preguntas a las que pertenece
+     */
+    public function recipes()
+    {
+        return $this->belongsToMany('App\Recipe', 'mana_recipe_ingredient');
+    }
+
+
+    /**
      * List of all relationships
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    // public function blocks()
-    // {
-    //     return $this->hasMany('Block');
-    // }
+    public function ingredientEntries()
+    {
+        return $this->hasMany('App\IngredientEntry');
+    }
 
     /**
      * Put new instances at the end
@@ -98,13 +87,12 @@ class User extends Base
     // }
 
     /**
-     * Return the profile Picture of the user.
+     * Render markup for the "featured" column in the admin listing
      *
      * @return string HTML
      */
-    public function printProfileImage()
+    public function getPublishedStatus()
     {
-        return $this->profile_pic ? '<img width="50" height="50" src="'.$this->profile_pic.'"/>' : '<img src="http://placehold.it/100"/>';
+        return $this->published ? '<span class="badge">Published</span>' : '';
     }
-
 }

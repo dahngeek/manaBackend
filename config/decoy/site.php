@@ -25,7 +25,8 @@ return [
         // 'Content,book' => [
         // 	'Articles' => '/admin/articles'
         // ],
-        // 'Cuestionarios,comment' => '/admin/cuestionarios',
+        'Recetas,comment' => '/admin/recipes',
+        'Ingredientes,comment' => '/admin/ingredients',
         // 'Paginas,align-left' => '/admin/paginas',
         // 'Preguntas,ok' => '/admin/foodquestions',
         'Usuarios,book' => [

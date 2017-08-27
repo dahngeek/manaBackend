@@ -3,42 +3,22 @@
 namespace App;
 
 use Bkwld\Decoy\Models\Base;
-// use Bkwld\Decoy\Models\Traits\HasImages;
+use Bkwld\Decoy\Models\Traits\HasImages;
 
-class User extends Base
+class Recipe extends Base
 {
-    // use HasImages;
-    public $table = 'mana_user';
-
+    use HasImages;
+    public $table = "mana_recipe";
     /**
      * Validation rules
      *
      * @var array
      */
     public static $rules = [
-    	'name' => 'required',
-    	'email' => 'email',
-    	'profile_pic' => 'url',
+        'name' => 'required',
+        'description' => 'required',
+        'images.default' => 'required|mimes:jpeg',
     ];
-
-    /**
-     * List all Users
-     *
-     * @return Array
-     */
-     public static function users_list()
-     {
-         $tipos = User::all();
-         $arr = array();
-         foreach ($tipos as $cue) {
-             $arr[$cue->id] = $cue->name;
-         }
-         // \Log::info("------------------------------------->>>>>>>>>>>>>>>");
-         // \Log::info($arr);
-         // \Log::info("<<<<<<<<<<<<<<<<<<<----------------------------------");
-         return $arr;
-     }
-
 
     /**
      * Uploadable attributes
@@ -46,6 +26,11 @@ class User extends Base
      * @var array
      */
     // protected $upload_attributes = ['pdf'];
+
+    public function ingredients()
+    {
+        return $this->belongsToMany('App\Ingredient', 'mana_recipe_ingredient');
+    }
 
     /**
      * Relationships to copy during duplication
@@ -98,13 +83,12 @@ class User extends Base
     // }
 
     /**
-     * Return the profile Picture of the user.
+     * Render markup for the "featured" column in the admin listing
      *
      * @return string HTML
      */
-    public function printProfileImage()
-    {
-        return $this->profile_pic ? '<img width="50" height="50" src="'.$this->profile_pic.'"/>' : '<img src="http://placehold.it/100"/>';
-    }
-
+    // public function getAdminFeaturedAttribute()
+    // {
+    //     return $this->featured ? '<span class="badge">Featured</span>' : '';
+    // }
 }
