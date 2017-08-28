@@ -22,24 +22,16 @@ return [
      * @var callable|array
      */
     'nav' => [
-        // 'Content,book' => [
-        // 	'Articles' => '/admin/articles'
-        // ],
         'Recetas,comment' => '/admin/recipes',
         'Ingredientes,comment' => '/admin/ingredients',
-
         'Publicaciones,book' => [
         	'Publicaciones' => '/admin/publications',
             'Tipos de Publicacion' => '/admin/publicationtypes',
         ],
-        'Tipos de Publicacion,comment' => '/admin/publicationtypes',
-        // 'Paginas,align-left' => '/admin/paginas',
-        // 'Preguntas,ok' => '/admin/foodquestions',
         'Usuarios,book' => [
         	'Usuarios' => '/admin/users',
             // 'Porciones' => '/admin/portiontemplates',
         ],
-        // 'Porciones,apple' => '/admin/portions',
         // 'Elements,leaf' => '/admin/elements',
         // 'Redirects,new-window' => '/admin/redirect-rules',
     ],
