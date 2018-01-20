@@ -3,13 +3,11 @@
 namespace App;
 
 use Bkwld\Decoy\Models\Base;
-use Bkwld\Decoy\Models\Traits\HasImages;
 
-class Publication extends Base
+class SavedContentItem extends Base
 {
-    use HasImages;
-    public $table='mana_publication';
-
+    public $table = "mana_saved_content_item";
+    public $timestamps = false;
     /**
      * Validation rules
      *
@@ -43,23 +41,15 @@ class Publication extends Base
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function user()
+    public function savedContent()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\SavedContent');
     }
-
-    public function publicationType()
-    {
-        return $this->belongsTo('App\PublicationType');
-    }
-
-    //Relación Many to Many con User
-    public function publication_likes()
-    {
-        return $this->belongsToMany('App\User','mana_user_publication_like')
-           ->using('App\UserPublicationLike')
-           ->withPivot('datetime');
-    }
+    
+    // public function blocks()
+    // {
+    //     return $this->hasMany('Block');
+    // }
 
     /**
      * Put new instances at the end
@@ -95,17 +85,12 @@ class Publication extends Base
     // }
 
     /**
-     * Get author name
+     * Render markup for the "featured" column in the admin listing
      *
      * @return string HTML
      */
-    public function getAuthor()
-    {
-        return $this->user->name;
-    }
-
-    public function getPublicationType()
-    {
-        return $this->publicationType->name;
-    }
+    // public function getAdminFeaturedAttribute()
+    // {
+    //     return $this->featured ? '<span class="badge">Featured</span>' : '';
+    // }
 }

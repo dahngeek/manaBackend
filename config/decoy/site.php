@@ -29,7 +29,8 @@ return [
             'Tipos de Publicacion' => '/admin/publicationtypes',
         ],
         'Usuarios,book' => [
-        	'Usuarios' => '/admin/users',
+            'Usuarios' => '/admin/users',
+            'Contenidos Guardados' => '/admin/savedcontents',
             // 'Porciones' => '/admin/portiontemplates',
         ],
         // 'Elements,leaf' => '/admin/elements',
@@ -81,7 +82,7 @@ return [
      */
     'locales' => [
         'en' => 'English',
-        // 'es' => 'Spanish',
+        'es' => 'Spanish',
         // 'fr' => 'French',
     ],
 

@@ -59,10 +59,23 @@ class User extends Base
      *
      * @return Illuminate\Database\Eloquent\Relations\Relation
      */
-    // public function blocks()
-    // {
-    //     return $this->hasMany('Block');
-    // }
+    public function saved_content()
+    {
+        return $this->hasMany('App\SavedContent');
+    }
+
+    public function publications()
+    {
+        return $this->hasMany('App\Publication');
+    }
+
+    //Relación Many to Many con Publication
+    public function likes_publications()
+    {
+        return $this->belongsToMany('App\Publication','mana_user_publication_like')
+           ->using('App\UserPublicationLike')
+           ->withPivot('datetime');
+    }
 
     /**
      * Put new instances at the end
